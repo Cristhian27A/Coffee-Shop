@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Tu Orden</h2>
+<p>Usuario: {{ order.user.username }}</p>
+<p>Fecha: {{ order.order_date }}</p>
+
+<h3>Productos:</h3>
+<ul>
+{% for op in order.orderproduct_set.all %}
+    <li>{{ op.product.name }} - Cantidad: {{ op.quantity }} - ${{ op.product.price }}</li>
+{% endfor %}
+</ul>
+
+<p>Total: ${{ order.get_total }}</p>
+{% endblock %}
